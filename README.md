@@ -142,6 +142,3 @@ curl "http://IP_ADDRESS:PORT/api/sentiment?text=This%20is%20bad"
 | `GET` | `/api/sentiment?text=...` | Анализ тональности текста |
 | `GET` | `/actuator/health` | Проверка здоровья сервиса (Liveness probe) |
 | `GET` | `/actuator/prometheus` | Метрики для Prometheus |
-
-```
-```
