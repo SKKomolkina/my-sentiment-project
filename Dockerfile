@@ -1,14 +1,16 @@
-# Stage 1: Сборка
+# Stage 1: Сборка (оставляем как есть)
 FROM maven:3.8-openjdk-17-slim AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-# Stage 2: Запуск (Alpine Linux)
-FROM eclipse-temurin:17-jre-alpine
+# Stage 2: Запуск (МЕНЯЕМ ЭТУ ЧАСТЬ)
+# Используем супер-легкий образ (~40MB)
+FROM bellsoft/liberica-runtime-container:jre-17-musl
+
 WORKDIR /app
-# Копируем только JAR файл
 COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
