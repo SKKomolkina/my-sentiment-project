@@ -21,7 +21,10 @@ spec:
           resources:
             requests:
               cpu: "100m"    # Обязательно для HPA
-              memory: "256Mi"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "768Mi"
 ---
 apiVersion: v1
 kind: Service
